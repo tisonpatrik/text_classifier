@@ -16,12 +16,14 @@ uvicorn = "*"
 asyncpg = "*"
 pydantic = "*"
 pandera = {extras = ["mypy"], version = "*"}
+matplotlib = "*"
 
 [dev-packages]
 vulture = "*"
 mypy = "*"
 ruff = "*"
 asyncpg-stubs = "*"
+ipykernel = "*"
 
 [requires]
 python_version = "3.12"
