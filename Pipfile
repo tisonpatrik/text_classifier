@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+pandas = "*"
+pydantic-settings = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-cov = "*"
+pytest-xdist = "*"
+rich = "*"
+uvicorn = "*"
+asyncpg = "*"
+pydantic = "*"
+pandera = {extras = ["mypy"], version = "*"}
+
+[dev-packages]
+vulture = "*"
+mypy = "*"
+ruff = "*"
+asyncpg-stubs = "*"
+
+[requires]
+python_version = "3.12"
