@@ -13,10 +13,11 @@ pytest-cov = "*"
 pytest-xdist = "*"
 rich = "*"
 uvicorn = "*"
-asyncpg = "*"
 pydantic = "*"
-pandera = {extras = ["mypy"], version = "*"}
 matplotlib = "*"
+langchain-community = "*"
+openai = "*"
+langchain-openai = "*"
 
 [dev-packages]
 vulture = "*"

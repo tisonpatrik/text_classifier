@@ -1,99 +1,12 @@
 services:
-
-  seeder:
+  openai:
     build:
       context: .
-      dockerfile: seeder/Dockerfile
-    hostname: seeder
-    container_name: seeder
-    depends_on:
-      - db_postgres
+      dockerfile: openai_solution/Dockerfile
+    hostname: openai
+    container_name: openai
     ports:
       - "8000:8000"
     volumes:
-      - ./seeder/src:/home/app/src
+      - ./openai_solution/src:/home/app/src
       - ./common:/home/app/common
-      - ./risk:/home/app/risk
-      - ./raw_data:/home/app/raw_data
-      - /home/patrik/repos/pysystemtrade_preprocessing/data:/path/in/container:rw
-
-  raw_data:
-    build:
-      context: .
-      dockerfile: raw_data/Dockerfile
-    hostname: raw_data
-    container_name: raw_data
-    depends_on:
-      - db_postgres
-    ports:
-      - "8100:8000"
-    volumes:
-      - ./raw_data:/home/app/raw_data
-      - ./common:/home/app/common
-  risk:
-    build:
-      context: .
-      dockerfile: risk/Dockerfile
-    hostname: risk
-    container_name: risk
-    depends_on:
-      - db_postgres
-    ports:
-      - "8200:8000"
-    volumes:
-      - ./risk:/home/app/risk
-      - ./common:/home/app/common
-  rules:
-    build:
-      context: .
-      dockerfile: rules/Dockerfile
-    hostname: rules
-    container_name: rules
-    depends_on:
-      - db_postgres
-    ports:
-      - "8300:8000"
-    volumes:
-      - ./rules:/home/app/rules
-      - ./common:/home/app/common
-  positions:
-    build:
-      context: .
-      dockerfile: positions/Dockerfile
-    hostname: positions
-    container_name: positions
-    depends_on:
-      - db_postgres
-      - risk
-    ports:
-      - "8400:8000"
-    volumes:
-      - ./positions:/home/app/positions
-      - ./common:/home/app/common
-
-  db_postgres:
-    image: postgres:latest
-    container_name: postgres
-    hostname: db_postgres
-    restart: on-failure
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=grayfox_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - db-postgres:/var/lib/postgresql/data
-
-  pg-admin:
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@email.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-      - PGADMIN_LISTEN_PORT=5050
-    ports:
-      - "5050:5050"
-
-volumes:
-  db-postgres:
-    driver: local

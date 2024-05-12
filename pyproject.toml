@@ -2,13 +2,10 @@
 minversion = "6.0"
 addopts = "-ra --cov=risk --cov=common --cov-report=term-missing:skip-covered"
 testpaths = [
-    "common/tests",
-    "risk/tests"
 ]
 pythonpath = [
     ".",
-    "risk",
-    "common"
+    "open_ai",
 ]
 
 [tool.ruff]
