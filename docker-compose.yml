@@ -1,12 +1,12 @@
 services:
-  openai:
+  classificator:
     build:
       context: .
-      dockerfile: openai_solution/Dockerfile
-    hostname: openai
-    container_name: openai
+      dockerfile: classificator/Dockerfile
+    hostname: classificator
+    container_name: classificator
     ports:
       - "8000:8000"
     volumes:
-      - ./openai_solution/src:/home/app/src
+      - ./classificator/src:/home/app/src
       - ./common:/home/app/common

@@ -10,9 +10,9 @@ WORKDIR /home/app
 
 COPY common/ ./common
 
-COPY openai_solution/ ./openai_solution
+COPY classificator/ ./classificator
 COPY .env ./
 
-RUN pip install --no-cache-dir -r openai_solution/requirements.txt
+RUN pip install --no-cache-dir -r classificator/requirements.txt
 
-CMD ["uvicorn", "openai_solution.src.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "classificator.src.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

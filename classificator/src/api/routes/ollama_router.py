@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import ValidationError
 
+from classificator.src.api.handlers.ollama_handler import OllamaHandler
+from classificator.src.api.models.request import ClassificationRequest
 from common.src.logging.logger import AppLogger
-from openai_solution.src.api.handlers.classification_handler import ClassificationHandler
-from openai_solution.src.api.models.request import ClassificationRequest
 
 router = APIRouter()
 logger = AppLogger.get_instance().get_logger()
@@ -16,7 +16,7 @@ logger = AppLogger.get_instance().get_logger()
 )
 def get_subsystem_position_for_instrument(
 	request: ClassificationRequest = Depends(),
-	handler: ClassificationHandler = Depends(),
+	handler: OllamaHandler = Depends(),
 ):
 	try:
 		category = handler.classify_article(request)
