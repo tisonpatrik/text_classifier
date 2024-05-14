@@ -5,7 +5,7 @@ testpaths = [
 ]
 pythonpath = [
     ".",
-    "open_ai",
+    "openai_solution",
 ]
 
 [tool.ruff]

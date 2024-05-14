@@ -29,7 +29,7 @@ class PromptService:
 
 	def create_prompt(self, title, prefix):
 		categories_str = ', '.join(self.categories)
-		article_input = f'{title} {prefix}'
+		article_input = f'{title} : {prefix}'
 		prompt_template = """As an article classifier for a news magazine, determine the appropriate category for this article based on its title and prefix.
         
 Title and Prefix: {}
