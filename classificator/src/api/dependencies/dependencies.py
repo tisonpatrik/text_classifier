@@ -19,7 +19,7 @@ def get_open_ai_model():
 			raise ValueError('OPENAI_API_KEY environment variable is not set.')
 
 		api_key = SecretStr(api_key_env)
-		model = OpenAI(api_key=api_key, model='gpt-3.5-turbo-instruct', temperature=0.2)
+		model = OpenAI(api_key=api_key, model='gpt-3.5-turbo-instruct', temperature=0)
 
 		logger.info('Successfully created OpenAI model instance.')
 		return model
@@ -30,7 +30,7 @@ def get_open_ai_model():
 
 def get_ollama():
 	try:
-		model = Ollama(model='phi3:mini', base_url='http://ollama:11434', temperature=0.1)
+		model = Ollama(model='phi3:mini', base_url='http://ollama:11434', temperature=0)
 		logger.info('Successfully created Ollama model instance.')
 		return model
 	except Exception as e:
