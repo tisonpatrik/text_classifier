@@ -12,18 +12,17 @@ from common.src.logging.logger import AppLogger
 class OpenAIHandler:
 	def __init__(
 		self,
-		open_ai_model: OpenAI = Depends(get_open_ai_model),
+		model: OpenAI = Depends(get_open_ai_model),
 	):
-		self.open_ai_model = open_ai_model
+		self.model = model
 		self.prompt_service = PromptService()
 		self.logger = AppLogger.get_instance().get_logger()
 
 	def classify_article(self, request: ClassificationRequest) -> Category:
 		try:
 			prompt = self.prompt_service.create_prompt(request.title, request.prefix)
-			prompt_template = PromptTemplate.from_template(prompt).format()
-			print(prompt_template)
-			response = self.open_ai_model.invoke(prompt_template).strip().lower()
+			prompt_template = PromptTemplate.from_template(prompt)
+			response = self.model.invoke(prompt_template.format()).strip().lower()
 			self.logger.info(f'Article classified into category: {response}')
 			return Category(category=response)
 		except Exception as e:

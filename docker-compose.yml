@@ -1,4 +1,5 @@
 services:
+
   classificator:
     build:
       context: .
@@ -10,3 +11,32 @@ services:
     volumes:
       - ./classificator/src:/home/app/src
       - ./common:/home/app/common
+    restart: always
+    depends_on:
+      - ollama
+    networks:
+      - ollama-network
+
+  ollama:
+    volumes:
+      - ./ollama/ollama:/root/.ollama
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    restart: unless-stopped
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    networks:
+      - ollama-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+networks:
+  ollama-network:
+    external: false

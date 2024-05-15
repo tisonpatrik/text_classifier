@@ -5,7 +5,6 @@ RUN apk update \
     && apk add --no-cache curl git build-base \
     && rm -rf /var/cache/apk/*
 
-# Setting the working directory in the container
 WORKDIR /home/app
 
 COPY common/ ./common
