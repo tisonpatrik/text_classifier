@@ -36,7 +36,11 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+volumes:
+  classificator:
+    driver: local
 
 networks:
   ollama-network:
     external: false
+

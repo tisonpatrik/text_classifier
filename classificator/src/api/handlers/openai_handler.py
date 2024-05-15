@@ -20,9 +20,8 @@ class OpenAIHandler:
 
 	def classify_article(self, request: ClassificationRequest) -> Category:
 		try:
-			prompt = self.prompt_service.create_prompt(request.title, request.prefix)
-			prompt_template = PromptTemplate.from_template(prompt)
-			response = self.model.invoke(prompt_template.format()).strip().lower()
+			prompt = self.prompt_service.create_prompt(request.get_text())
+			response = self.model.invoke(prompt.format()).strip().lower()
 			self.logger.info(f'Article classified into category: {response}')
 			return Category(category=response)
 		except Exception as e:

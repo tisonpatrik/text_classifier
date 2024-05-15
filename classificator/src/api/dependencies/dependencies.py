@@ -30,7 +30,7 @@ def get_open_ai_model():
 
 def get_ollama():
 	try:
-		model = Ollama(model='phi3:mini', base_url='http://ollama:11434', temperature=0)
+		model = Ollama(model='mistral:instruct', base_url='http://ollama:11434', temperature=0)
 		logger.info('Successfully created Ollama model instance.')
 		return model
 	except Exception as e:

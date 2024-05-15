@@ -18,6 +18,7 @@ matplotlib = "*"
 langchain-community = "*"
 openai = "*"
 langchain-openai = "*"
+langchain = "*"
 
 [dev-packages]
 vulture = "*"
