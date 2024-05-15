@@ -9,13 +9,11 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./classificator/src:/home/app/src
+      - ./classificator:/home/app/classificator
       - ./common:/home/app/common
     restart: always
     depends_on:
       - ollama
-    networks:
-      - ollama-network
 
   ollama:
     volumes:
@@ -27,8 +25,6 @@ services:
     image: ollama/ollama:latest
     ports:
       - 11434:11434
-    networks:
-      - ollama-network
     deploy:
       resources:
         reservations:
@@ -36,11 +32,4 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-volumes:
-  classificator:
-    driver: local
-
-networks:
-  ollama-network:
-    external: false
 
