@@ -39,7 +39,7 @@ def get_ollama():
 
 def get_custom_model():
 	try:
-		model = CustomModel(model_path='path/to/your/model')
+		model = CustomModel(model_path='distilbert-base-uncased')
 		logger.info('Successfully created CustomModel instance.')
 		return model
 	except Exception as e:
