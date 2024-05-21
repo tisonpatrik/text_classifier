@@ -20,7 +20,6 @@
     },
     "postCreateCommand": "pip install -r requirements.txt",
     "postStartCommand": "export PYTHONPATH=$PYTHONPATH:/env",
-    "workspaceFolder": "/workspace/project-directory",
     "runArgs": [
         "--gpus",
         "all"

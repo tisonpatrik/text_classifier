@@ -4,4 +4,7 @@ bitsandbytes
 peft
 datasets
 trl
+tensorflow
+jupyter
+ipykernel
 ipywidgets
