@@ -14,4 +14,4 @@ sudo systemctl restart docker
 docker run --gpus all nvidia/cuda:11.5.2-base-ubuntu20.04 nvidia-smi
 
 # Run this
-docker exec -it ollama ollama run phi3:mini
+docker exec -it ollama ollama run mistral:instruct

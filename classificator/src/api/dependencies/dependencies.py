@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from langchain_community.llms.ollama import Ollama
 from langchain_openai import OpenAI
 from pydantic.v1 import SecretStr
-
+from common.src.llm_model.custom_model import CustomModel
 from common.src.logging.logger import AppLogger
 
 logger = AppLogger.get_instance().get_logger()
@@ -35,4 +35,13 @@ def get_ollama():
 		return model
 	except Exception as e:
 		logger.error(f'Error occurred while creating Ollama model: {e}')
+		raise
+
+def get_custom_model():
+	try:
+		model = CustomModel(model_path='path/to/your/model')
+		logger.info('Successfully created CustomModel instance.')
+		return model
+	except Exception as e:
+		logger.error(f'Error occurred while creating CustomModel: {e}')
 		raise
