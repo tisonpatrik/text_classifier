@@ -34,7 +34,7 @@ class PromptService:
 		self.logger = AppLogger.get_instance().get_logger()
 		self.template = """
 		system: Jsi expertní algoritmus pro klasifikaci článků.
-        Tvým jediným úkolem je přiřadit textu jednu hodnotu 'Ketegorie' z daného seznamu.
+        Tvým jediným úkolem je přiřadit textu jednu hodnotu 'Kategorie' z daného seznamu.
         Jediná možná odpověď je jedna z položek z daného seznamu kategorií.
 		Nikdy nevysvětluj, proč jsi vybral danou kategorii.
         kategorie: {categories}

@@ -1,0 +1,28 @@
+{
+    "name": "transformers",
+    "image": "huggingface/transformers-pytorch-gpu",
+    "forwardPorts": [
+        8888
+    ],
+    "containerEnv": {
+        "PYTHONPATH": "${containerEnv:PYTHONPATH}:/env",
+        "PATH": "/usr/local/cuda/bin:${localEnv:PATH}",
+        "LD_LIBRARY_PATH": "/usr/local/cuda/lib64:${localEnv:LD_LIBRARY_PATH}"
+    },
+    "remoteUser": "root",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    },
+    "postCreateCommand": "pip install -r requirements.txt",
+    "postStartCommand": "export PYTHONPATH=$PYTHONPATH:/env",
+    "workspaceFolder": "/workspace/project-directory",
+    "runArgs": [
+        "--gpus",
+        "all"
+    ]
+}
