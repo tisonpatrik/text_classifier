@@ -14,7 +14,13 @@ services:
     restart: always
     depends_on:
       - ollama
-
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
   ollama:
     volumes:
       - ./ollama/ollama:/root/.ollama

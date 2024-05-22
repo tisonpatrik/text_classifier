@@ -12,6 +12,7 @@ COPY common/ ./common
 COPY labels/ ./labels
 
 COPY classificator/ ./classificator
+COPY my_model/ ./my_model
 COPY .env ./
 
 RUN pip install --no-cache-dir -r classificator/requirements.txt
