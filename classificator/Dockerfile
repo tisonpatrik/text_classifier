@@ -1,16 +1,18 @@
-FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime AS base
-
-WORKDIR /home/app
-
-COPY common/ ./common
-COPY classificator/ ./classificator
-COPY .env ./
+FROM nvcr.io/nvidia/pytorch:24.04-py3 AS base
 
 RUN apt-get update && apt-get install -y \
     curl \
     git \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /home/app
+
+COPY common/ ./common
+COPY labels/ ./labels
+
+COPY classificator/ ./classificator
+COPY .env ./
 
 RUN pip install --no-cache-dir -r classificator/requirements.txt
 

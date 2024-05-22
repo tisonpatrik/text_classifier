@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from langchain_community.llms.ollama import Ollama
 from langchain_openai import OpenAI
 from pydantic.v1 import SecretStr
+from classificator.src.services.label_service import LabelsService
+from classificator.src.utils.load_csv import load_csv
 from common.src.llm_model.custom_model import CustomModel
 from common.src.logging.logger import AppLogger
 
@@ -19,7 +21,8 @@ def get_open_ai_model():
 			raise ValueError('OPENAI_API_KEY environment variable is not set.')
 
 		api_key = SecretStr(api_key_env)
-		model = OpenAI(api_key=api_key, model='gpt-3.5-turbo-instruct', temperature=0)
+		open_ai_model = os.getenv('OPENAI_MODEL')
+		model = OpenAI(api_key=api_key, model=open_ai_model, temperature=0)
 
 		logger.info('Successfully created OpenAI model instance.')
 		return model
@@ -30,7 +33,8 @@ def get_open_ai_model():
 
 def get_ollama():
 	try:
-		model = Ollama(model='mistral:instruct', base_url='http://ollama:11434', temperature=0)
+		ollama_model = os.getenv('OLLAMA_MODEL')
+		model = Ollama(model=ollama_model, base_url='http://ollama:11434', temperature=0)
 		logger.info('Successfully created Ollama model instance.')
 		return model
 	except Exception as e:
@@ -39,9 +43,23 @@ def get_ollama():
 
 def get_custom_model():
 	try:
-		model = CustomModel(model_path='distilbert-base-uncased')
+		custom_model = os.getenv('CUSTOM_MODEL')
+		model = CustomModel(model_name=custom_model)
 		logger.info('Successfully created CustomModel instance.')
 		return model
 	except Exception as e:
 		logger.error(f'Error occurred while creating CustomModel: {e}')
+		raise
+
+
+def get_labels_service():
+	try:
+		labels_file = os.getenv('LABELS_FILE')
+		print(labels_file)
+		labels = load_csv(labels_file)
+		print(labels)
+		logger.info('Successfully loaded labels.')
+		return LabelsService(labels)
+	except Exception as e:
+		logger.error(f'Error occurred while loading labels: {e}')
 		raise

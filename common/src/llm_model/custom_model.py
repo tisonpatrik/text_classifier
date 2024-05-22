@@ -2,8 +2,8 @@ from transformers import DistilBertTokenizer, DistilBertForSequenceClassificatio
 import torch
 
 class CustomModel:
-    def __init__(self, model_path: str):
-        self.model_path = model_path
+    def __init__(self, model_name: str):
+        self.model_path = model_name
         self.load_model()
 
     def load_model(self):
