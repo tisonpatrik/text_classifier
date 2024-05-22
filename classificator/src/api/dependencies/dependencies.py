@@ -56,8 +56,6 @@ def get_custom_model():
         logger.error(f'Error occurred while creating CustomModel: {e}')
         raise
 
-
-
 def get_labels_service():
 	try:
 		labels_file = os.getenv('LABELS_FILE')

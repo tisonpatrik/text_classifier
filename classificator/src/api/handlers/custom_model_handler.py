@@ -23,7 +23,7 @@ class CustomModelHandler:
 		try:
 			prompt = self.prompt_service.create_prompt(request.get_text())
 			response = self.model.invoke(prompt.format()).strip().lower()
-			label = self.labels_service.get_label(int(response))
+			label = self.labels_service.get_label(response)
 			self.logger.info(f'Article classified into category: {label}')
 			return Category(category=label)
 		except Exception as e:
