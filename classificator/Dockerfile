@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:24.04-py3 AS base
+FROM tensorflow/tensorflow:latest-gpu-jupyter AS base
 
 RUN apt-get update && apt-get install -y \
     curl \

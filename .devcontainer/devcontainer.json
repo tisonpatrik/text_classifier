@@ -1,6 +1,6 @@
 {
     "name": "transformers",
-    "image": "huggingface/transformers-pytorch-gpu",
+    "image": "tensorflow/tensorflow:latest-gpu-jupyter",
     "forwardPorts": [
         8888
     ],
