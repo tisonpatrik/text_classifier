@@ -8,5 +8,6 @@ langchain_openai==0.1.6
 langchain-community==0.0.38
 openai==1.28.1
 transformers==4.41.0
-datasets
-tf-keras
+datasets==2.19.1
+tf-keras==2.16.0
+scikit-learn==1.5.0
