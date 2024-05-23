@@ -12,6 +12,3 @@ stop:
 
 down:
 	@docker compose -f ./docker-compose.yml down --remove-orphans
-
-cleaner:
-	@vulture . --exclude .venv
